@@ -1,0 +1,9 @@
+flowchart LR
+    uploader["User Device"] --> veldora["Veldora / Nextcloud"]
+    veldora --> drops["Media Drop Folders"]
+    drops --> ingest["media-ingest.service"]
+    ingest --> quarantine["Quarantine"]
+    ingest --> shuna["Shuna / Jellyfin Libraries"]
+    ingest --> logs["Structured Logs"]
+    ingest --> veldoraScan["Veldora occ files:scan"]
+    ingest --> shunaScan["Shuna Library Refresh"]

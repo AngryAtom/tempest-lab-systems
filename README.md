@@ -17,7 +17,7 @@ Primary focus:
 - Monitoring and alert design.
 - Security posture review.
 - Automation and recovery workflows.
-- Product and platform case studies.
+- Platform service case studies.
 
 ## What It Demonstrates
 
@@ -43,6 +43,7 @@ The point is not to show a perfect environment. The point is to show practical e
 | Services | [Service catalog model](docs/architecture/service-catalog.md) | How services are classified, exposed, monitored, and documented. |
 | Security | [Security posture review](docs/security/security-posture-review.md) | Practical hardening model for the platform. |
 | Media | [Home media platform case study](docs/projects/home-media-platform.md) | Streaming, remote access, library automation, and metadata cleanup. |
+| Media Ingest | [Veldora to Shuna ingest workflow](docs/guides/nextcloud-drop-folder-to-media-library.md) | Reproducible Nextcloud-to-Jellyfin staging, ingest, scan, and recovery pattern. |
 | Operations | [Runbook index](docs/operations/runbook-index.md) | Recovery notes and checklists written from real issues. |
 | Roadmap | [Tempest roadmap](ROADMAP.md) | Current direction and future platform improvements. |
 
@@ -75,9 +76,11 @@ The platform separates services into private-only, VPN-reachable, and carefully 
 
 ### Media Ingest Automation
 
-The media platform grew from basic streaming into a real operations story: access paths, TV apps, remote users, library imports, metadata cleanup, disk pressure, and monitors that explain where a failure lives.
+The media platform grew from basic streaming into a real operations story: Veldora drop folders, Shuna libraries, access paths, TV apps, remote users, library imports, metadata cleanup, disk pressure, and monitors that explain where a failure lives.
 
 [Read the media platform case study](docs/projects/home-media-platform.md)
+
+[Read the Veldora to Shuna ingest workflow](docs/guides/nextcloud-drop-folder-to-media-library.md)
 
 ### Monitoring That Helps
 
@@ -90,11 +93,12 @@ The monitoring notes focus on actionable signals: whether the service is down, t
 - [Architecture](docs/architecture/overview.md)
 - [Service catalog](docs/architecture/service-catalog.md)
 - [Guides](docs/guides/README.md)
-- [Product case studies](docs/projects/README.md)
+- [Platform service case studies](docs/projects/README.md)
 - [Operations runbooks](docs/operations/runbook-index.md)
 - [Incident notes](docs/incident-notes/README.md)
 - [Security review](docs/security/security-posture-review.md)
 - [Roadmap](ROADMAP.md)
+- [Veldora to Shuna ingest diagram](diagrams/veldora-to-shuna-ingest.mmd)
 
 ## Operating Principles
 
@@ -111,4 +115,4 @@ The platform captures those lessons while they are still fresh.
 
 ## Portfolio Context
 
-Tempest is the flagship AngryAtom project. It anchors the broader portfolio by showing how infrastructure, automation, security, monitoring, product work, and documentation fit together as one maintainable engineering system.
+Tempest is the flagship AngryAtom project. It anchors the broader portfolio by showing how infrastructure, automation, security, monitoring, platform services, and documentation fit together as one maintainable engineering system.

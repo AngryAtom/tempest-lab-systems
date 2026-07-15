@@ -34,7 +34,19 @@ How to design checks that explain where a failure lives: service origin, reverse
 
 [Read the guide](nextcloud-drop-folder-to-media-library.md)
 
-How to use a sync folder as a friendly upload surface while keeping the final media library clean and duplicate-free.
+How Veldora-style Nextcloud drop folders feed Shuna-style Jellyfin libraries through a safe, logged ingest workflow.
+
+### Veldora Nextcloud Operations
+
+[Read the guide](veldora-nextcloud-operations.md)
+
+How to operate a file-sync service as a controlled upload surface with ownership, scans, quotas, and recovery notes.
+
+### Shuna Jellyfin Operations
+
+[Read the guide](shuna-jellyfin-operations.md)
+
+How to operate a media server with separate libraries, access paths, metadata review, monitoring, and post-ingest validation.
 
 ## Identity And Security
 

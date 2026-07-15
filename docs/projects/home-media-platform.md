@@ -55,21 +55,25 @@ Real imports include:
 - Duplicate imports after a failed attempt.
 - Bad rips that need to be removed and redone.
 
-The important design decision was to use a staging area instead of uploading directly into the media library.
+The important design decision was to use Veldora as a staging area instead of uploading directly into the Shuna media library.
 
 The workflow:
 
-1. Upload media into a file-sync drop folder.
+1. Upload media into a Veldora file-sync drop folder.
 2. Wait until uploads settle.
 3. Move completed media into the right library.
 4. Handle loose files, folders, duplicates, and extras.
 5. Rescan the sync source so the upload UI stays accurate.
-6. Refresh the media server library.
+6. Refresh the Shuna media server library.
 7. Log what happened.
 
 That turned media import from a manual chore into an operational workflow.
 
-[Read the media ingest guide](../guides/nextcloud-drop-folder-to-media-library.md)
+Technical guides:
+
+- [Veldora to Shuna media ingest workflow](../guides/nextcloud-drop-folder-to-media-library.md)
+- [Veldora Nextcloud operations](../guides/veldora-nextcloud-operations.md)
+- [Shuna Jellyfin operations](../guides/shuna-jellyfin-operations.md)
 
 ## Metadata Lessons
 
@@ -83,7 +87,7 @@ Examples:
 - A movie with broken audio is better removed and re-imported than endlessly patched around.
 - A library can look wrong even when the files are technically present.
 
-The platform handles this by separating media types into clearer libraries and treating imports as reviewable events instead of blind file moves.
+The platform handles this by separating media types into clearer Shuna libraries and treating imports as reviewable events instead of blind file moves.
 
 ## Automation Lessons
 

@@ -21,6 +21,7 @@ This roadmap tracks the direction of the platform and the documentation that sup
 - Add a post-restart validation checklist as a standalone runbook.
 - Add a backup and restore validation outline.
 - Add a lightweight architecture decision record format.
+- Add more sanitized Veldora and Shuna examples from real operations.
 
 ## Medium-Term Improvements
 
@@ -30,13 +31,14 @@ This roadmap tracks the direction of the platform and the documentation that sup
 - Add a security review checklist for public-facing services.
 - Document storage pressure, media ingest, and recovery expectations.
 - Add exported architecture diagrams where useful for quick scanning.
+- Add operator-ready examples for approved lab systems such as Shuna, Veldora, Ciel, Ranga, Benimaru, and Soei.
 
 ## Long-Term Direction
 
 - Mature Tempest into a reusable reference architecture for self-hosted infrastructure.
 - Extract mature tools into separate repositories when they deserve their own lifecycle.
 - Connect approved public lab services, automation utilities, and security tooling back to the platform where appropriate.
-- Use Tempest as the operating foundation for future product, security, AI, and automation work.
+- Use Tempest as the operating foundation for future public-safe security, AI, automation, and infrastructure work.
 
 ## Project Boundaries
 

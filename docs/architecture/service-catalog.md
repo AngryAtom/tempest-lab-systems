@@ -17,6 +17,16 @@ This catalog describes the major service roles in the lab and how they are opera
 | Cyber range | Contained practice targets and tools | Private lab only | Legal, isolated, nondestructive practice. |
 | OSINT desk | Investigation workflow tooling | Private | Must stay legal and avoid account intrusion. |
 
+## Example Service Entries
+
+These examples use sanitized Tempest service names. Replace hostnames, paths, user IDs, and network ranges with values from your own environment.
+
+| Service | Role | Access Model | Example Name | Key Operations |
+| --- | --- | --- | --- | --- |
+| Veldora | File sync and media drop folders | Private/VPN user access | `files.lab.example.internal` | Upload staging, ownership repair, `occ files:scan`, quota review. |
+| Shuna | Media streaming and library indexing | Private and optional hardened user edge | `media.lab.example.internal` | Library scan, metadata review, user access, client validation. |
+| Media ingest job | Automation bridge between Veldora and Shuna | Host-local service | `media-ingest.service` | Settled-upload checks, moves, duplicate detection, quarantine, logging. |
+
 ## Access Matrix Template
 
 | Service | Admin Access | Standard User Access | Public Exposure | Monitor |

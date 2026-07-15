@@ -1,4 +1,4 @@
-# Product Case Studies
+# Platform Service Case Studies
 
 These writeups describe engineering lessons from public-safe services and infrastructure work inside the Tempest platform.
 

@@ -44,3 +44,18 @@ flowchart TB
 - One service catalog that documents hostname, purpose, owner, access path, monitoring, and recovery notes.
 - Runbooks for failure cases, not just happy-path deployment.
 - Clear separation between operational notes, user-facing docs, and engineering writeups.
+
+## Example Named Services
+
+Tempest uses sanitized public names for selected lab systems:
+
+| Name | Public Role Description |
+| --- | --- |
+| Veldora | Nextcloud-style file-sync and media upload staging service. |
+| Shuna | Jellyfin-style media streaming and library service. |
+| Ciel | Automation, coordination, or assistant-style lab service where safe to document. |
+| Ranga | Approved lab service or support component. |
+| Benimaru | Approved lab service or support component. |
+| Soei | Approved lab service or support component. |
+
+Only public-safe service roles and sanitized configuration patterns belong in this repository.
