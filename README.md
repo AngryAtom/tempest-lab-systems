@@ -44,6 +44,7 @@ The point is not to show a perfect environment. The point is to show practical e
 | Security | [Security posture review](docs/security/security-posture-review.md) | Practical hardening model for the platform. |
 | Media | [Home media platform case study](docs/projects/home-media-platform.md) | Streaming, remote access, library automation, and metadata cleanup. |
 | Media Ingest | [Veldora to Shuna ingest workflow](docs/guides/nextcloud-drop-folder-to-media-library.md) | Reproducible Nextcloud-to-Jellyfin staging, ingest, scan, and recovery pattern. |
+| Public Media Edge | [Shuna public edge and reverse proxy](docs/guides/shuna-public-edge-reverse-proxy.md) | No-domain testing, owned-domain setup, safe reverse proxying, validation, and rollback. |
 | Operations | [Runbook index](docs/operations/runbook-index.md) | Recovery notes and checklists written from real issues. |
 | Roadmap | [Tempest roadmap](ROADMAP.md) | Current direction and future platform improvements. |
 
@@ -82,6 +83,8 @@ The media platform grew from basic streaming into a real operations story: Veldo
 
 [Read the Veldora to Shuna ingest workflow](docs/guides/nextcloud-drop-folder-to-media-library.md)
 
+[Read the Shuna public edge guide](docs/guides/shuna-public-edge-reverse-proxy.md)
+
 ### Monitoring That Helps
 
 The monitoring notes focus on actionable signals: whether the service is down, the proxy path is broken, DNS is wrong, or the alert itself is noisy.
@@ -99,6 +102,7 @@ The monitoring notes focus on actionable signals: whether the service is down, t
 - [Security review](docs/security/security-posture-review.md)
 - [Roadmap](ROADMAP.md)
 - [Veldora to Shuna ingest diagram](diagrams/veldora-to-shuna-ingest.mmd)
+- [Shuna public edge diagram](diagrams/shuna-public-edge.mmd)
 
 ## Operating Principles
 

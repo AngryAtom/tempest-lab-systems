@@ -95,6 +95,8 @@ For optional public access, review:
 - Rate limiting or upstream protection.
 - Rollback plan.
 
+For the full public-edge pattern, see [Shuna Public Edge And Reverse Proxy](shuna-public-edge-reverse-proxy.md).
+
 ## User Model
 
 Recommended pattern:

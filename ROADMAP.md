@@ -22,6 +22,7 @@ This roadmap tracks the direction of the platform and the documentation that sup
 - Add a backup and restore validation outline.
 - Add a lightweight architecture decision record format.
 - Add more sanitized Veldora and Shuna examples from real operations.
+- Expand public-edge examples for no-domain, dynamic-hostname, owned-domain, and tunnel-based access patterns.
 
 ## Medium-Term Improvements
 

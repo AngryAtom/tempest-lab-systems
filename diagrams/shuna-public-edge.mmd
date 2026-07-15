@@ -1,0 +1,9 @@
+flowchart LR
+    remote["Remote User"] --> dns["Public DNS or Dynamic Hostname"]
+    dns --> edge["Router / Tunnel / Public Edge"]
+    edge --> proxy["Reverse Proxy"]
+    proxy --> shuna["Shuna / Jellyfin :8096"]
+    shuna --> media["Read-Only Media Libraries"]
+    monitor["External Monitor"] --> dns
+    internal["Internal Monitor"] --> shuna
+    admin["Admin Services"] -. "private only" .-> proxy

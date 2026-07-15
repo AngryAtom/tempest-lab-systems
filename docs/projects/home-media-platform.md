@@ -74,6 +74,7 @@ Technical guides:
 - [Veldora to Shuna media ingest workflow](../guides/nextcloud-drop-folder-to-media-library.md)
 - [Veldora Nextcloud operations](../guides/veldora-nextcloud-operations.md)
 - [Shuna Jellyfin operations](../guides/shuna-jellyfin-operations.md)
+- [Shuna public edge and reverse proxy](../guides/shuna-public-edge-reverse-proxy.md)
 
 ## Metadata Lessons
 

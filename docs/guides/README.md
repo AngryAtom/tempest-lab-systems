@@ -48,6 +48,12 @@ How to operate a file-sync service as a controlled upload surface with ownership
 
 How to operate a media server with separate libraries, access paths, metadata review, monitoring, and post-ingest validation.
 
+### Shuna Public Edge And Reverse Proxy
+
+[Read the guide](shuna-public-edge-reverse-proxy.md)
+
+How to publish a Jellyfin-style service safely through a reverse proxy, including no-domain testing, owned-domain setup, hardening, validation, and rollback.
+
 ## Identity And Security
 
 ### Identity And User Onboarding
