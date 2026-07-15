@@ -1,0 +1,17 @@
+flowchart TB
+    devices["User Devices"] --> access["LAN / VPN / Public Edge"]
+    access --> dns["Private DNS"]
+    access --> proxy["Reverse Proxy"]
+    proxy --> vault["Password Vault"]
+    proxy --> media["Media Server"]
+    proxy --> cloud["File Sync"]
+    proxy --> monitor["Monitoring"]
+    proxy --> identity["Identity Provider"]
+    proxy --> labs["Cyber / OSINT Lab"]
+    monitor --> alerts["Notifications"]
+    cloud --> ingest["Media Ingest Automation"]
+    ingest --> media
+    identity --> media
+    identity --> cloud
+    identity --> labs
+

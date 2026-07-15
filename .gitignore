@@ -1,0 +1,17 @@
+.env
+.env.*
+*.db
+*.sqlite
+*.sqlite3
+*.log
+*.bak
+*.key
+*.pem
+*.pfx
+*.p12
+secrets/
+private/
+vault/
+exports/
+screenshots/raw/
+
