@@ -68,6 +68,12 @@ How to think about central users, groups, MFA, service integration models, onboa
 
 How to keep security practice legal, contained, measurable, and useful for defensive learning.
 
+### Building A Homelab SIEM With Wazuh
+
+[Read the guide](homelab-siem-with-wazuh.md)
+
+How a dedicated SOC node was brought online, connected to the primary lab host, and used to collect host, Docker, reverse-proxy, honeypot, and custom telemetry.
+
 ## Related Case Studies
 
 - [Home media platform case study](../projects/home-media-platform.md)

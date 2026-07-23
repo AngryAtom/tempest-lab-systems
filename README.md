@@ -91,6 +91,12 @@ The monitoring notes focus on actionable signals: whether the service is down, t
 
 [Read the monitoring guide](docs/guides/monitoring-that-helps.md)
 
+### Homelab SIEM With Wazuh
+
+The SOC build now has a dedicated Wazuh node ingesting host, Docker, reverse-proxy, honeypot, and custom telemetry from the primary lab host. The writeup focuses on practical implementation lessons: proving the API path, enrolling the first agent, validating signal flow, and avoiding secret leakage through container command telemetry.
+
+[Read the SIEM guide](docs/guides/homelab-siem-with-wazuh.md)
+
 ## Documentation Map
 
 - [Architecture](docs/architecture/overview.md)

@@ -29,6 +29,22 @@ No public guide in this repo should encourage attacking third-party systems.
 | Alert broker | Send meaningful notifications |
 | Case notes | Capture what happened and what was learned |
 
+## Current SOC Milestone
+
+The lab now has a dedicated private SIEM node using Wazuh.
+
+The first production-style integration connects the primary homelab host as an agent and collects:
+
+- Host authentication and privilege-use logs.
+- Reverse-proxy access logs.
+- Docker/container lifecycle events.
+- Honeypot events.
+- Custom lab telemetry from earlier defensive experiments.
+
+The deeper build note is here:
+
+[Building a homelab SIEM with Wazuh](homelab-siem-with-wazuh.md)
+
 ## Practice Range Goals
 
 | Component | Purpose |
@@ -66,4 +82,4 @@ Each scenario should include:
 - Telemetry makes practice more valuable.
 - Reset paths matter as much as exploit paths.
 - Good security labs teach restraint as well as technique.
-
+- SIEM collection can reveal bad secret-handling patterns, especially when secrets are placed directly in command arguments.
