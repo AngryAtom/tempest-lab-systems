@@ -41,11 +41,13 @@ The point is not to show a perfect environment. The point is to show practical e
 | --- | --- | --- |
 | Platform | [Architecture overview](docs/architecture/overview.md) | High-level topology, major layers, and design principles. |
 | Services | [Service catalog model](docs/architecture/service-catalog.md) | How services are classified, exposed, monitored, and documented. |
+| Security Telemetry | [Telemetry and SIEM architecture](docs/architecture/telemetry-and-siem-architecture.md) | Dedicated SOC node design, event sources, trust boundaries, and validation checks. |
 | Security | [Security posture review](docs/security/security-posture-review.md) | Practical hardening model for the platform. |
 | Media | [Home media platform case study](docs/projects/home-media-platform.md) | Streaming, remote access, library automation, and metadata cleanup. |
 | Media Ingest | [Veldora to Shuna ingest workflow](docs/guides/nextcloud-drop-folder-to-media-library.md) | Reproducible Nextcloud-to-Jellyfin staging, ingest, scan, and recovery pattern. |
 | Public Media Edge | [Shuna public edge and reverse proxy](docs/guides/shuna-public-edge-reverse-proxy.md) | No-domain testing, owned-domain setup, safe reverse proxying, validation, and rollback. |
 | Operations | [Runbook index](docs/operations/runbook-index.md) | Recovery notes and checklists written from real issues. |
+| Product Case Study | [Bookfolio](docs/projects/bookfolio.md) | Product workflow, metadata cleanup, user management, public edge hardening, and operations. |
 | Roadmap | [Tempest roadmap](ROADMAP.md) | Current direction and future platform improvements. |
 
 ## Platform Shape
@@ -91,9 +93,17 @@ The monitoring notes focus on actionable signals: whether the service is down, t
 
 [Read the monitoring guide](docs/guides/monitoring-that-helps.md)
 
+### Bookfolio Product Build
+
+Bookfolio is a product-style application for cataloging physical books. The case study focuses on the interesting engineering parts: flexible intake when ISBN/barcode lookup fails, user-selected cover images, admin controls, bulk actions, public service hardening, and operating the app like a supported service.
+
+[Read the Bookfolio case study](docs/projects/bookfolio.md)
+
 ### Homelab SIEM With Wazuh
 
 The SOC build now has a dedicated Wazuh node ingesting host, Docker, reverse-proxy, honeypot, and custom telemetry from the primary lab host. The writeup focuses on practical implementation lessons: proving the API path, enrolling the first agent, validating signal flow, and avoiding secret leakage through container command telemetry.
+
+[Read the SIEM architecture](docs/architecture/telemetry-and-siem-architecture.md)
 
 [Read the SIEM guide](docs/guides/homelab-siem-with-wazuh.md)
 
@@ -101,14 +111,17 @@ The SOC build now has a dedicated Wazuh node ingesting host, Docker, reverse-pro
 
 - [Architecture](docs/architecture/overview.md)
 - [Service catalog](docs/architecture/service-catalog.md)
+- [Telemetry and SIEM architecture](docs/architecture/telemetry-and-siem-architecture.md)
 - [Guides](docs/guides/README.md)
 - [Platform service case studies](docs/projects/README.md)
+- [Bookfolio case study](docs/projects/bookfolio.md)
 - [Operations runbooks](docs/operations/runbook-index.md)
 - [Incident notes](docs/incident-notes/README.md)
 - [Security review](docs/security/security-posture-review.md)
 - [Roadmap](ROADMAP.md)
 - [Veldora to Shuna ingest diagram](diagrams/veldora-to-shuna-ingest.mmd)
 - [Shuna public edge diagram](diagrams/shuna-public-edge.mmd)
+- [SIEM telemetry architecture diagram](diagrams/siem-telemetry-architecture.mmd)
 
 ## Operating Principles
 

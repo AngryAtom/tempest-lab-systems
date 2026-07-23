@@ -4,6 +4,8 @@ This note captures the public version of a real Tempest Lab Systems milestone: t
 
 The goal was not just to install a dashboard. The goal was to make the lab observable: host events, container activity, reverse-proxy access, honeypot events, and earlier telemetry experiments all flowing into one defensive layer.
 
+For the sanitized system design, see [Telemetry And SIEM Architecture](../architecture/telemetry-and-siem-architecture.md).
+
 ## What Was Built
 
 The SIEM node runs Wazuh as a private-only security platform.
@@ -33,6 +35,19 @@ Core pieces:
 | Monitoring | Watches dashboard/API/listener health separately |
 | Password manager | Stores generated administrative credentials outside documentation |
 | Runbooks | Capture install, validation, recovery, and gotchas |
+
+## How It Fits The Larger Platform
+
+The SIEM is treated as a private platform service, not a public application.
+
+| Platform Layer | SIEM Relationship |
+| --- | --- |
+| Identity and onboarding | Tracks who should have admin access and keeps future SSO/MFA integration on the roadmap. |
+| Private DNS | Provides a clean internal access name without publishing the service. |
+| Reverse proxy | Handles private HTTPS access where appropriate, but does not make the SIEM public. |
+| Monitoring | Checks dashboard, API, and listener health separately from the SIEM's own alerts. |
+| Notifications | Receives serious alerts after the signal is proven useful. |
+| Runbooks | Store recovery checks, enrollment steps, and post-power-loss validation. |
 
 ## Why A Dedicated Node
 

@@ -18,9 +18,11 @@ flowchart TB
     services --> monitoring["Monitoring And Alerts"]
     admin --> monitoring
     lab --> monitoring
+    monitoring --> siem["Security Telemetry / SIEM"]
     identity["Identity Provider"] --> services
     identity --> admin
     monitoring --> notes["Operations Runbooks"]
+    siem --> notes
 ```
 
 ## Major Layers
@@ -33,6 +35,7 @@ flowchart TB
 | Container runtime | Service deployment and isolation | Docker, Docker Compose, Portainer-style UI |
 | Identity | Users, groups, onboarding, SSO planning | Authentik-style identity provider |
 | Monitoring | Availability and useful failure signals | Uptime Kuma-style monitors |
+| Security telemetry | Host, container, reverse-proxy, honeypot, and custom event collection | Wazuh-style SIEM |
 | Media | Personal streaming and ingest workflows | Jellyfin-style media server |
 | Storage | Cloud sync and temporary drop folders | Nextcloud-style file sync |
 | Security lab | Defensive and offensive practice in a contained environment | Honeypots, telemetry, cyber range tools |
@@ -57,5 +60,10 @@ Tempest uses sanitized public names for selected lab systems:
 | Ranga | Approved lab service or support component. |
 | Benimaru | Approved lab service or support component. |
 | Soei | Approved lab service or support component. |
+| Dedicated SOC Node | Private SIEM and security telemetry platform. |
 
 Only public-safe service roles and sanitized configuration patterns belong in this repository.
+
+## Related Architecture Notes
+
+- [Telemetry and SIEM architecture](telemetry-and-siem-architecture.md)

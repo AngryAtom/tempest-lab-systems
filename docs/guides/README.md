@@ -74,6 +74,12 @@ How to keep security practice legal, contained, measurable, and useful for defen
 
 How a dedicated SOC node was brought online, connected to the primary lab host, and used to collect host, Docker, reverse-proxy, honeypot, and custom telemetry.
 
+### Telemetry And SIEM Architecture
+
+[Read the architecture note](../architecture/telemetry-and-siem-architecture.md)
+
+How the SIEM layer is separated from user services, which event sources are collected first, and how the trust boundaries stay private.
+
 ## Related Case Studies
 
 - [Home media platform case study](../projects/home-media-platform.md)

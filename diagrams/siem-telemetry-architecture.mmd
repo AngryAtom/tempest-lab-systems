@@ -1,0 +1,30 @@
+flowchart TB
+    users["User Devices"] --> edge["LAN / VPN / Selected Public Edge"]
+    edge --> proxy["Reverse Proxy"]
+    edge --> dns["Private DNS"]
+
+    proxy --> apps["User Services"]
+    proxy --> admin["Admin Services"]
+    proxy --> lab["Security Lab"]
+
+    apps --> appLogs["App Logs"]
+    admin --> adminLogs["Admin Logs"]
+    lab --> canaryLogs["Canary Logs"]
+    proxy --> proxyLogs["Proxy Logs"]
+    host["Primary Container Host"] --> authLogs["Auth And System Logs"]
+    host --> dockerEvents["Docker Events"]
+    host --> customTelemetry["Custom Telemetry"]
+
+    appLogs --> agent["Endpoint Agent"]
+    adminLogs --> agent
+    canaryLogs --> agent
+    proxyLogs --> agent
+    authLogs --> agent
+    dockerEvents --> agent
+    customTelemetry --> agent
+
+    agent --> manager["SIEM Manager"]
+    manager --> indexer["Indexer"]
+    indexer --> dashboard["Dashboard"]
+    manager --> alerts["Alert Review"]
+    dashboard --> runbooks["Runbooks"]
