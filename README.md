@@ -17,7 +17,7 @@ Primary focus:
 - Monitoring and alert design.
 - Security posture review.
 - Automation and recovery workflows.
-- Platform service case studies.
+- Public-safe platform case studies.
 
 ## What It Demonstrates
 
@@ -31,7 +31,7 @@ Tempest shows practical engineering judgment across the full lifecycle of system
 - Media and file workflows that account for real users, messy uploads, and metadata edge cases.
 - Remote access and support workflows for devices outside the LAN.
 - Security review, remediation tracking, and contained cyber range planning.
-- Practical platform services that expose real operations, access, monitoring, and recovery problems.
+- Practical operations patterns that expose real access, monitoring, and recovery problems.
 
 The point is not to show a perfect environment. The point is to show practical engineering judgment: build, test, break, recover, document, and improve.
 
@@ -47,7 +47,6 @@ The point is not to show a perfect environment. The point is to show practical e
 | Media Ingest | [Veldora to Shuna ingest workflow](docs/guides/nextcloud-drop-folder-to-media-library.md) | Reproducible Nextcloud-to-Jellyfin staging, ingest, scan, and recovery pattern. |
 | Public Media Edge | [Shuna public edge and reverse proxy](docs/guides/shuna-public-edge-reverse-proxy.md) | No-domain testing, owned-domain setup, safe reverse proxying, validation, and rollback. |
 | Operations | [Runbook index](docs/operations/runbook-index.md) | Recovery notes and checklists written from real issues. |
-| Product Case Study | [Bookfolio](docs/projects/bookfolio.md) | Product workflow, metadata cleanup, user management, public edge hardening, and operations. |
 | Roadmap | [Tempest roadmap](ROADMAP.md) | Current direction and future platform improvements. |
 
 ## Platform Shape
@@ -93,12 +92,6 @@ The monitoring notes focus on actionable signals: whether the service is down, t
 
 [Read the monitoring guide](docs/guides/monitoring-that-helps.md)
 
-### Bookfolio Product Build
-
-Bookfolio is a product-style application for cataloging physical books. The case study focuses on the interesting engineering parts: flexible intake when ISBN/barcode lookup fails, user-selected cover images, admin controls, bulk actions, public service hardening, and operating the app like a supported service.
-
-[Read the Bookfolio case study](docs/projects/bookfolio.md)
-
 ### Homelab SIEM With Wazuh
 
 The SOC build now has a dedicated Wazuh node ingesting host, Docker, reverse-proxy, honeypot, and custom telemetry from the primary lab host. The writeup focuses on practical implementation lessons: proving the API path, enrolling the first agent, validating signal flow, and avoiding secret leakage through container command telemetry.
@@ -113,8 +106,7 @@ The SOC build now has a dedicated Wazuh node ingesting host, Docker, reverse-pro
 - [Service catalog](docs/architecture/service-catalog.md)
 - [Telemetry and SIEM architecture](docs/architecture/telemetry-and-siem-architecture.md)
 - [Guides](docs/guides/README.md)
-- [Platform service case studies](docs/projects/README.md)
-- [Bookfolio case study](docs/projects/bookfolio.md)
+- [Public-safe case studies](docs/projects/README.md)
 - [Operations runbooks](docs/operations/runbook-index.md)
 - [Incident notes](docs/incident-notes/README.md)
 - [Security review](docs/security/security-posture-review.md)
