@@ -17,17 +17,4 @@ The media platform is a practical service build that grew into a full operations
 
 The case study focuses on the issues that show up when a media server stops being a toy and starts behaving like a supported service.
 
-## Bookfolio
-
-[Read the case study](bookfolio.md)
-
-Bookfolio is a product-style application for cataloging physical books with real-world intake and cleanup workflows:
-
-- Barcode, ISBN, title, author, and manual entry paths.
-- User-selected cover images when metadata is incomplete.
-- Admin controls for user lifecycle management.
-- Bulk actions for managing large collections.
-- Public access through a hardened service edge.
-- Monitoring and operations notes like any other supported platform service.
-
-The case study focuses on product workflow, messy metadata, user management, and operating a small public-facing app safely.
+Private product work is intentionally excluded from this public repository. Public writeups stay focused on reusable infrastructure, operations, security, and media-platform patterns.
