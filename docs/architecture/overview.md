@@ -56,7 +56,7 @@ Tempest uses sanitized public names for selected lab systems:
 | --- | --- |
 | Veldora | Nextcloud-style file-sync and media upload staging service. |
 | Shuna | Jellyfin-style media streaming and library service. |
-| Ciel | Automation, coordination, or assistant-style lab service where safe to document. |
+| Automation layer | Coordination and workflow services where safe to document. |
 | Ranga | Approved lab service or support component. |
 | Benimaru | Approved lab service or support component. |
 | Soei | Approved lab service or support component. |

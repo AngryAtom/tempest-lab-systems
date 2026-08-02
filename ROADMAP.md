@@ -12,6 +12,7 @@ This roadmap tracks the direction of the platform and the documentation that sup
 - Continue security posture review and remediation tracking.
 - Document public/private service exposure decisions.
 - Capture realistic failure modes and recovery paths.
+- Expand the SOC layer with endpoint telemetry, dashboard tuning, and repeatable workstation onboarding.
 
 ## Short-Term Improvements
 
@@ -23,6 +24,8 @@ This roadmap tracks the direction of the platform and the documentation that sup
 - Add a lightweight architecture decision record format.
 - Add more sanitized Veldora and Shuna examples from real operations.
 - Expand public-edge examples for no-domain, dynamic-hostname, owned-domain, and tunnel-based access patterns.
+- Add more public-safe Wazuh/Sysmon lessons as additional endpoints are onboarded.
+- Document when to use endpoint agents, Sysmon, DFIR tooling, and packet-level IDS sensors.
 
 ## Medium-Term Improvements
 
@@ -32,7 +35,8 @@ This roadmap tracks the direction of the platform and the documentation that sup
 - Add a security review checklist for public-facing services.
 - Document storage pressure, media ingest, and recovery expectations.
 - Add exported architecture diagrams where useful for quick scanning.
-- Add operator-ready examples for approved lab systems such as Shuna, Veldora, Ciel, Ranga, Benimaru, and Soei.
+- Add operator-ready examples for approved media, identity, notification, remote-access, and SOC components.
+- Add a sanitized SOC dashboard design guide covering analyst views, noisy baselines, and validation windows.
 
 ## Long-Term Direction
 

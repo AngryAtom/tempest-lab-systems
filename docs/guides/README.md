@@ -74,6 +74,8 @@ How to keep security practice legal, contained, measurable, and useful for defen
 
 How a dedicated SOC node was brought online, connected to the primary lab host, and used to collect host, Docker, reverse-proxy, honeypot, and custom telemetry.
 
+The latest pass adds Windows workstation telemetry, Sysmon, PowerShell event channels, dashboard tuning, and a repeatable endpoint bootstrap pattern.
+
 ### Telemetry And SIEM Architecture
 
 [Read the architecture note](../architecture/telemetry-and-siem-architecture.md)
@@ -85,3 +87,4 @@ How the SIEM layer is separated from user services, which event sources are coll
 - [Home media platform case study](../projects/home-media-platform.md)
 - [Portainer local endpoint recovery](../incident-notes/portainer-stale-docker-socket.md)
 - [Password manager client/server version drift](../incident-notes/vaultwarden-client-server-version-drift.md)
+- [Sysmon PowerShell policy-test noise](../incident-notes/sysmon-powershell-policy-test-noise.md)

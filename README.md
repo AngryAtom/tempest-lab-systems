@@ -95,13 +95,15 @@ The monitoring notes focus on actionable signals: whether the service is down, t
 
 ### Homelab SIEM With Wazuh
 
-The SOC build now has a dedicated Wazuh node ingesting host, Docker, reverse-proxy, honeypot, and custom telemetry from the primary lab host. The writeup focuses on practical implementation lessons: proving the API path, enrolling the first agent, validating signal flow, and avoiding secret leakage through container command telemetry.
+The SOC build now has a dedicated Wazuh node ingesting host, Docker, reverse-proxy, honeypot, DNS, endpoint, Sysmon, PowerShell, and custom telemetry. The writeup focuses on practical implementation lessons: proving the API path, enrolling agents, validating signal flow, tuning dashboards, and avoiding secret leakage through container command telemetry.
 
-Recent improvements expanded the public-safe notes with reverse-proxy probe classification, DNS telemetry context, and recovery lessons from startup-order issues after power loss.
+Recent improvements expanded the public-safe notes with Windows workstation telemetry, Sysmon tuning, reverse-proxy probe classification, DNS telemetry context, dashboard design, and recovery lessons from startup-order issues after power loss.
 
 [Read the SIEM architecture](docs/architecture/telemetry-and-siem-architecture.md)
 
 [Read the SIEM guide](docs/guides/homelab-siem-with-wazuh.md)
+
+[Read the Sysmon noise-tuning incident note](docs/incident-notes/sysmon-powershell-policy-test-noise.md)
 
 ## Documentation Map
 
@@ -131,7 +133,7 @@ Tempest exists because practical infrastructure surfaces the problems polished t
 
 The platform captures those lessons while they are still fresh.
 
-Recent examples include a stale container-management socket after a Docker restart and a password-manager client/server version drift issue where API checks passed but the browser extension stayed unusable.
+Recent examples include a stale container-management socket after a Docker restart, a password-manager client/server version drift issue where API checks passed but the browser extension stayed unusable, and a Sysmon tuning issue where PowerShell execution-policy temp files buried useful endpoint signal.
 
 ## Portfolio Context
 

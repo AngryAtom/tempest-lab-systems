@@ -14,6 +14,9 @@ flowchart TB
     host["Primary Container Host"] --> authLogs["Auth And System Logs"]
     host --> dockerEvents["Docker Events"]
     host --> customTelemetry["Custom Telemetry"]
+    workstation["Windows Workstation"] --> endpointAgent["Endpoint Agent"]
+    workstation --> sysmon["Sysmon Events"]
+    workstation --> powershell["PowerShell Event Channels"]
 
     appLogs --> agent["Endpoint Agent"]
     adminLogs --> agent
@@ -22,8 +25,11 @@ flowchart TB
     authLogs --> agent
     dockerEvents --> agent
     customTelemetry --> agent
+    sysmon --> endpointAgent
+    powershell --> endpointAgent
 
     agent --> manager["SIEM Manager"]
+    endpointAgent --> manager
     manager --> indexer["Indexer"]
     indexer --> dashboard["Dashboard"]
     manager --> alerts["Alert Review"]

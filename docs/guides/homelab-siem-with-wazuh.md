@@ -93,6 +93,97 @@ The first enrolled host sends a useful starter set of telemetry:
 
 The first success criterion was simple: the agent should appear active, log collectors should report the intended files, Docker events should show up, and test events should be searchable.
 
+## Adding Workstation Telemetry
+
+After the first server agent was stable, the next milestone was adding a Windows workstation. That changed the SIEM from "the lab host is observable" to "the lab can also see endpoint behavior."
+
+The workstation stack used two layers:
+
+| Layer | Value |
+| --- | --- |
+| Wazuh agent | Inventory, vulnerability detection, security configuration assessment, Windows event collection, and central agent status. |
+| Sysmon | Process creation, suspicious file creation, selected registry activity, network connections, and persistence-oriented telemetry. |
+
+The useful pattern was to treat workstation telemetry as a group policy inside Wazuh:
+
+1. Install the endpoint agent with the private SIEM manager name.
+2. Wait for the endpoint to appear active.
+3. Assign it to a workstation group.
+4. Let the group deploy event-channel collection for Sysmon and PowerShell.
+5. Restart the endpoint agent so the shared config is picked up.
+6. Validate with a short time window before trusting the dashboard.
+
+The workstation group collected:
+
+- `Microsoft-Windows-Sysmon/Operational`
+- `Microsoft-Windows-PowerShell/Operational`
+- `Windows PowerShell`
+
+That gave the dashboard useful endpoint data without hand-editing every endpoint separately.
+
+## The Sysmon Tuning Lesson
+
+Sysmon immediately made the SIEM more useful, but it also created an excellent noise-tuning lesson.
+
+The dashboard lit up with critical alerts for executable/script file creation under the user's temp directory. At first glance, that looks scary. The sample records told the real story: PowerShell was creating temporary files named like `__PSScriptPolicyTest_*.ps1` while checking execution policy.
+
+That is a classic SIEM moment:
+
+- The rule was not wrong.
+- The event was not useless.
+- The volume made it operationally unhelpful.
+
+The first instinct was to tune the SIEM rule. That helped explain the problem, but the cleaner fix was source-side tuning in the Sysmon config. The endpoint should not ship thousands of known PowerShell self-test file events if they are not useful to the analyst.
+
+The final pattern:
+
+1. Confirm the top noisy rule.
+2. Pull several raw event samples.
+3. Identify the exact benign filename/path pattern.
+4. Add a narrow Sysmon exclusion for that one pattern.
+5. Re-apply the Sysmon config.
+6. Check a short recent window, not the whole dashboard history.
+
+Why the short window matters: historical alerts remain indexed. A dashboard looking at the last day can still show the old flood even after the fix is working.
+
+The result was the right balance: temp-folder script and executable drops still matter, but PowerShell's own execution-policy probes no longer bury the analyst.
+
+## Making Dashboards Useful
+
+A dashboard that counts every event is not a SOC dashboard. It is a stress generator.
+
+The Tempest Wazuh dashboards were split into analyst-oriented views:
+
+| View | Purpose |
+| --- | --- |
+| SOC overview | Mission-control slice of actionable alerts, agents, severity, auth, public edge, and DNS signal. |
+| Endpoint security | Workstation and server endpoint activity, vulnerability findings, hardening checks, Windows telemetry, and file integrity. |
+| Network and public edge | Reverse-proxy probes, public route behavior, DNS blocks, and suspicious lookup patterns. |
+| Host and containers | Docker lifecycle, service restarts, host auth, sudo, and container-focused operational signal. |
+
+The important tuning decision was to keep baseline events available for investigation while excluding them from mission-level charts. Normal DNS observations and routine auth chatter can be searchable without dominating the main screen.
+
+## Repeatable Endpoint Bootstrap
+
+The next endpoint should not require rediscovering the process.
+
+The documented endpoint bootstrap now follows this shape:
+
+```powershell
+.\install-tempest-windows-endpoint.ps1 -AgentName "workstation-name"
+```
+
+That wrapper performs the workstation flow:
+
+1. Installs the Wazuh agent.
+2. Points it at the private SIEM manager name.
+3. Installs or updates Sysmon.
+4. Applies the tuned Sysmon baseline.
+5. Restarts the endpoint agent.
+6. Prints the server-side group assignment command.
+
+The server-side step is still explicit on purpose. Endpoint enrollment and group assignment are trust decisions, and those should stay visible instead of being hidden inside a convenience script.
+
 ## Making Reverse-Proxy Logs Useful
 
 Raw reverse-proxy logs are valuable, but they become noisy quickly once a service is reachable from the internet.

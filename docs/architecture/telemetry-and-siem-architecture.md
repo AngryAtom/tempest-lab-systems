@@ -78,6 +78,7 @@ The first production-useful SIEM milestone was not "all possible logs." It was a
 | Honeypot/canary logs | Fake SSH, HTTP, Telnet, or database probes | Detect low-effort probing and lab traffic experiments. |
 | Custom telemetry | App-specific health and workflow events | Bring earlier dashboards and scripts into the same investigation path. |
 | DNS/security filter logs | Query metadata, blocked domains, internal lookups | Connect name-resolution behavior to endpoint and proxy events. |
+| Windows endpoint telemetry | Wazuh agent, Sysmon, PowerShell event channels | Track workstation inventory, hardening posture, suspicious process/file activity, and script execution context. |
 
 ## SIEM Node Components
 
@@ -180,6 +181,21 @@ That checklist belongs in the private runbook.
 
 One fully validated host is more valuable than ten hosts that only sort of report in. The first host should prove authentication logs, system logs, proxy logs, Docker events, and a test alert before scaling collection.
 
+### Then Add Endpoint Depth Deliberately
+
+The first workstation should add depth, not chaos.
+
+The useful pattern is:
+
+1. Enroll the endpoint agent.
+2. Confirm inventory, vulnerability, and configuration assessment data.
+3. Add Sysmon and PowerShell event channels through a shared workstation group.
+4. Review the top noisy rules in short windows.
+5. Tune one proven benign pattern at a time.
+6. Capture the final workflow as a repeatable onboarding path.
+
+This makes each new workstation easier to add and keeps dashboard design grounded in real signal instead of raw event volume.
+
 ### Public-Edge Logs Need Their Own Labels
 
 Reverse-proxy logs are noisy by default. A useful SIEM does not just ingest every request; it separates routine traffic from meaningful classes such as:
@@ -216,7 +232,7 @@ The defensive pattern is:
 The next useful expansion areas are:
 
 - Endpoint coverage for additional lab nodes.
-- Windows workstation event collection.
+- Additional Windows workstation coverage using the validated Wazuh plus Sysmon pattern.
 - Firewall/router log ingestion where supported.
 - Triage dashboards for auth, proxy, Docker, and honeypot events.
 - Alert routing into the internal notification system.

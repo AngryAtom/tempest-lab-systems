@@ -18,3 +18,4 @@ The goal is to make the next similar failure boring.
 
 - [Portainer local endpoint down after Docker restart](portainer-stale-docker-socket.md)
 - [Password manager extension break from client/server version drift](vaultwarden-client-server-version-drift.md)
+- [Sysmon PowerShell policy-test noise](sysmon-powershell-policy-test-noise.md)
