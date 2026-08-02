@@ -36,6 +36,8 @@ Core pieces:
 | Password manager | Stores generated administrative credentials outside documentation |
 | Runbooks | Capture install, validation, recovery, and gotchas |
 
+The dedicated node was intentionally treated as its own platform tier. It is not a random dashboard added to the existing app host; it has its own storage expectations, private access path, monitoring checks, and recovery notes.
+
 ## How It Fits The Larger Platform
 
 The SIEM is treated as a private platform service, not a public application.
@@ -87,8 +89,40 @@ The first enrolled host sends a useful starter set of telemetry:
 | Docker listener | Container lifecycle and runtime events |
 | Honeypot logs | Intentional deception events from lab probes |
 | Custom telemetry | Earlier lab-specific signals and staged detections |
+| DNS/security filter logs | Query behavior, blocked domains, and internal lookup context |
 
 The first success criterion was simple: the agent should appear active, log collectors should report the intended files, Docker events should show up, and test events should be searchable.
+
+## Making Reverse-Proxy Logs Useful
+
+Raw reverse-proxy logs are valuable, but they become noisy quickly once a service is reachable from the internet.
+
+The practical improvement was to classify common probe patterns into their own SIEM rules:
+
+- Requests for sensitive files.
+- Admin panel probes.
+- Router, CGI, and exploit-path probes.
+- Scanner user agents.
+- Unusual HTTP methods.
+- Upstream failures that indicate routing or origin issues.
+
+This keeps public-edge telemetry useful without turning every web crawler into an incident.
+
+## Adding DNS Context
+
+DNS logs were added as a supporting signal rather than a standalone source of truth.
+
+The useful fields were normalized into compact records:
+
+- Query hostname.
+- Query type.
+- Client class.
+- Upstream resolver.
+- Cached status.
+- Internal platform lookup vs external lookup.
+- Blocked or allowed outcome.
+
+That made it easier to connect "what tried to resolve" with "what later connected" without storing unnecessary bulky response data.
 
 ## A Real Gotcha: Dashboard API Credentials
 
@@ -108,6 +142,26 @@ The fix pattern:
 6. Confirm dashboard API checks return successful responses.
 
 That is a useful troubleshooting shape for any self-hosted dashboard that talks to a backend API: prove the backend, prove the network, then prove the service-to-service credential.
+
+## Another Gotcha: Startup Order After Power Loss
+
+The SOC node came back after outages, but there was a subtle timing issue: containers could start before the private network identity was fully available.
+
+When a stack binds to specific private addresses, that can produce a half-working state:
+
+- Containers are running.
+- The dashboard process exists.
+- The expected dashboard/API/listener ports are not bound correctly.
+- Agents cannot reconnect.
+
+The fix was not "restart everything." The better recovery pattern was:
+
+1. Confirm the host has the expected network identities.
+2. Check the actual listener bindings.
+3. Restart only the Wazuh stack if bindings are missing or partial.
+4. Verify dashboard, manager API, agent listener, and enrolled agents independently.
+
+That lesson matters for any lab service that binds to VPN, VLAN, or interface-specific addresses.
 
 ## A Better Gotcha: SIEMs Remember Secrets
 
@@ -150,6 +204,9 @@ Useful post-install checks:
 - Docker listener reports it started.
 - A harmless test event becomes searchable.
 - Monitoring checks distinguish dashboard, API, and listener health.
+- Public-edge test requests produce classified findings.
+- DNS test lookups produce compact, searchable records.
+- A reboot test proves the SOC node rejoins the private network and restores listener bindings.
 
 ## Operational Lessons
 
@@ -158,6 +215,9 @@ Useful post-install checks:
 - Separate “service is running” from “data is flowing.”
 - Keep the SIEM private by default.
 - Treat container command arguments as telemetry-visible.
+- Tune public-edge logs into categories, not panic.
+- Add DNS telemetry for context, not as a flood of raw payloads.
+- Validate power-loss recovery while the fix is fresh.
 - Write runbooks while the failure is fresh.
 - Build small, prove each signal, then widen collection.
 

@@ -47,6 +47,7 @@ The point is not to show a perfect environment. The point is to show practical e
 | Media Ingest | [Veldora to Shuna ingest workflow](docs/guides/nextcloud-drop-folder-to-media-library.md) | Reproducible Nextcloud-to-Jellyfin staging, ingest, scan, and recovery pattern. |
 | Public Media Edge | [Shuna public edge and reverse proxy](docs/guides/shuna-public-edge-reverse-proxy.md) | No-domain testing, owned-domain setup, safe reverse proxying, validation, and rollback. |
 | Operations | [Runbook index](docs/operations/runbook-index.md) | Recovery notes and checklists written from real issues. |
+| Incident Notes | [Password manager client/server version drift](docs/incident-notes/vaultwarden-client-server-version-drift.md) | A real compatibility failure where login and sync returned success but the browser extension could not render vault data. |
 | Roadmap | [Tempest roadmap](ROADMAP.md) | Current direction and future platform improvements. |
 
 ## Platform Shape
@@ -96,6 +97,8 @@ The monitoring notes focus on actionable signals: whether the service is down, t
 
 The SOC build now has a dedicated Wazuh node ingesting host, Docker, reverse-proxy, honeypot, and custom telemetry from the primary lab host. The writeup focuses on practical implementation lessons: proving the API path, enrolling the first agent, validating signal flow, and avoiding secret leakage through container command telemetry.
 
+Recent improvements expanded the public-safe notes with reverse-proxy probe classification, DNS telemetry context, and recovery lessons from startup-order issues after power loss.
+
 [Read the SIEM architecture](docs/architecture/telemetry-and-siem-architecture.md)
 
 [Read the SIEM guide](docs/guides/homelab-siem-with-wazuh.md)
@@ -127,6 +130,8 @@ Tempest exists because practical infrastructure surfaces the problems polished t
 - Documentation only matters if it helps during the failure, not after the story is already over.
 
 The platform captures those lessons while they are still fresh.
+
+Recent examples include a stale container-management socket after a Docker restart and a password-manager client/server version drift issue where API checks passed but the browser extension stayed unusable.
 
 ## Portfolio Context
 

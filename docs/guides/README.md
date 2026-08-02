@@ -84,3 +84,4 @@ How the SIEM layer is separated from user services, which event sources are coll
 
 - [Home media platform case study](../projects/home-media-platform.md)
 - [Portainer local endpoint recovery](../incident-notes/portainer-stale-docker-socket.md)
+- [Password manager client/server version drift](../incident-notes/vaultwarden-client-server-version-drift.md)

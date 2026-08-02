@@ -5,6 +5,7 @@ This index collects recovery notes and operational checklists from the lab.
 ## Recovery Notes
 
 - [Portainer local endpoint down after Docker restart](../incident-notes/portainer-stale-docker-socket.md)
+- [Password manager extension break from client/server version drift](../incident-notes/vaultwarden-client-server-version-drift.md)
 
 ## Operational Checklists
 
@@ -51,3 +52,15 @@ Use this after power loss, host restart, or network changes:
 4. Confirm user-facing services are reachable from their expected access paths.
 5. Review storage pressure before resuming media or file automation.
 6. Capture any service that required manual recovery.
+
+### Client/Server Compatibility Check
+
+Use this when a browser extension, mobile app, or desktop client can log in but behaves strangely:
+
+1. Confirm the service web UI and API health endpoint work.
+2. Confirm the client is pointed at the correct self-hosted URL.
+3. Check the server version.
+4. Check the client or extension version.
+5. Search release notes or known issues for that version pair.
+6. Test from a second browser or device.
+7. Upgrade the server in a backed-up maintenance window if the failure follows the client across devices.

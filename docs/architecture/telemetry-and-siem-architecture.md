@@ -77,6 +77,7 @@ The first production-useful SIEM milestone was not "all possible logs." It was a
 | Docker events | Container start/stop/recreate/health activity | See deployment actions and unexpected container churn. |
 | Honeypot/canary logs | Fake SSH, HTTP, Telnet, or database probes | Detect low-effort probing and lab traffic experiments. |
 | Custom telemetry | App-specific health and workflow events | Bring earlier dashboards and scripts into the same investigation path. |
+| DNS/security filter logs | Query metadata, blocked domains, internal lookups | Connect name-resolution behavior to endpoint and proxy events. |
 
 ## SIEM Node Components
 
@@ -130,6 +131,7 @@ The key validation step is proving that each source creates searchable events, n
 | Agent-first rollout | Starts with the highest-value host before adding every device. |
 | Internal monitors | Detect whether the dashboard, API, and agent listener are healthy. |
 | Runbook-driven changes | Every failure or fix becomes operational knowledge. |
+| Local-first dashboards | Dashboard access is private first; public DNS and tunnel paths are avoided for SOC tools. |
 
 ## Useful Validation Checks
 
@@ -178,6 +180,37 @@ That checklist belongs in the private runbook.
 
 One fully validated host is more valuable than ten hosts that only sort of report in. The first host should prove authentication logs, system logs, proxy logs, Docker events, and a test alert before scaling collection.
 
+### Public-Edge Logs Need Their Own Labels
+
+Reverse-proxy logs are noisy by default. A useful SIEM does not just ingest every request; it separates routine traffic from meaningful classes such as:
+
+- Sensitive-file probes.
+- Admin-path probes.
+- Router or CGI exploit paths.
+- Scanner user agents.
+- Unusual HTTP methods.
+- Upstream failures.
+
+That turns public-edge noise into reviewable findings without pretending every bot request is an emergency.
+
+### DNS Telemetry Adds Context
+
+DNS logs are useful because they explain what a host was trying to reach before a proxy request, endpoint alert, or blocked connection appeared.
+
+The useful public-safe pattern is to normalize query metadata while avoiding bulky or sensitive payloads. Query host, query type, client class, cached status, upstream choice, and internal-vs-external classification are often more useful than storing every raw response.
+
+### Power Recovery Can Break Port Bindings
+
+On small lab nodes, services can start before VPN or private network interfaces are fully ready. If containers bind directly to specific private addresses, the stack may appear to start while dashboard or listener ports are missing.
+
+The defensive pattern is:
+
+1. Wait for the expected network identities.
+2. Verify listener bindings.
+3. Restart only the affected stack if bindings are partial.
+4. Confirm dashboard, API, and agent listener separately.
+5. Capture the exact failure in the runbook.
+
 ## Future Expansion
 
 The next useful expansion areas are:
@@ -189,5 +222,6 @@ The next useful expansion areas are:
 - Alert routing into the internal notification system.
 - Incident note templates with evidence, timeline, impact, and corrective action.
 - A DFIR-focused companion tool for deeper endpoint investigation.
+- A wired or mirrored network vantage point for packet-level tools such as Zeek or Suricata.
 
 The end state is not just "more logs." The end state is an investigation workflow that tells an operator what happened, where it happened, how confident the signal is, and what to check next.
